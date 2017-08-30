@@ -1,0 +1,35 @@
+body
+{
+    color: grey;
+}
+li
+{
+    font-size: 50px;
+    
+
+    width: 400px;
+    margin-top: 10px;
+    margin-left: 440px;
+
+    list-style: none;
+
+    text-align: center;
+    text-transform: uppercase;
+    border: solid;
+    border-radius: 20px;
+    background-color: yellow;
+}
+h1
+{
+    text-align: center;
+}
+.inputs
+{
+    margin-left: 450px;
+}
+.selections{
+    margin-left: 450px;
+}
+h2{
+    text-align: center;
+}
