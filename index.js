@@ -16,15 +16,14 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json())
 app.use(express.static('public'));
 
-app.get('/', function(req, res) {
-
+  app.get('/', function(req, res) {
   models.Registration.find({}, function(err, numberPlates) {
-    res.render('index', {
-      numberPlates
-    })
-  });
-
+    numberPlates
+  })
+  res.render('index');
 });
+
+
 
 var emptyString = [];
 var plateObj = {};
@@ -47,13 +46,15 @@ app.post('/', function(req, res) {
       if (!data) {
         models.Registration.create({
           regNum: enteredRegNumber
-        }, function(err, regNum) {
+        }, function(err, plate) {
           if (err) {
             console.log(err);
           } else {
 
-            res.redirect('/')
-          
+            res.render('index',{
+            numberPlates : plate
+            });
+
           }
         })
       }
@@ -83,7 +84,7 @@ app.post('/filter', function(req, res) {
       })
     }
   })
-})
+});
 
 
 var port = 3001;

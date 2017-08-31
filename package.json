@@ -16,5 +16,10 @@
     "handlebars": "^4.0.10",
     "mongoose": "^4.11.9",
     "pkg": "^4.2.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   }
 }
