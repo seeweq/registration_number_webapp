@@ -13,7 +13,7 @@
   <h1>Registration Number App</h1>
 
   <form class="inputs" action="/" method="post">
-    <input type="text" name="addRegNumber" placeholder="enter registration" required="">
+    <input type="text" name="addRegNumber" placeholder="enter registration" required="" pattern='.{10,10}' maxlength="10" >
     <input type="submit" name="RegNumberbtn" value="Add">
 
   </form>
@@ -27,10 +27,15 @@
     </div>
     <input type="submit" name="fliterbtn" value="show">
   </form>
-
+  <form class="resetbtn" action="/reset" method="post">
+    <input type="submit" name="RegNumberbtn" value="Reset">
+  </form>
 
   <ul>
-    {{#each numberPlates}}
+
+ {{numberPlates.length}}
+
+  {{#each numberPlates}}
       <li>{{this.regNum}}</li>
     {{/each}}
   </ul>

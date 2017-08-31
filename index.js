@@ -16,20 +16,28 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json())
 app.use(express.static('public'));
 
-  app.get('/', function(req, res) {
+app.get('/', function(req, res) {
   models.Registration.find({}, function(err, numberPlates) {
-    numberPlates
+    //numberPlates
+    res.render('index', {
+      numberPlates
+    });
   })
-  res.render('index');
 });
+//controls what registration enters
+
+
 
 
 
 var emptyString = [];
 var plateObj = {};
 app.post('/', function(req, res) {
+  var areas = req.body.plateNumber;
   var enteredRegNumber = req.body.addRegNumber;
   var message = 'This registration number already exists'
+
+
   models.Registration.findOne({
     regNum: enteredRegNumber
   }, function(err, data) {
@@ -43,23 +51,32 @@ app.post('/', function(req, res) {
       })
     } else {
 
+
       if (!data) {
-        models.Registration.create({
-          regNum: enteredRegNumber
-        }, function(err, plate) {
-          if (err) {
-            console.log(err);
-          } else {
+        if (enteredRegNumber.startsWith('ca') ||
+          enteredRegNumber.startsWith('cl') ||
+          enteredRegNumber.startsWith('cy')) {
+          models.Registration.create({
+            regNum: enteredRegNumber
+          }, function(err, plate) {
+            if (err) {
+              console.log(err);
+            } else {
 
-            res.render('index',{
-            numberPlates : plate
-            });
+              res.redirect("/")
 
-          }
-        })
+
+            }
+          })
+        } else {
+          res.render('index', {
+            message: "registration not supported"
+          })
+        }
       }
     }
   })
+  // }
 });
 
 
@@ -85,7 +102,15 @@ app.post('/filter', function(req, res) {
     }
   })
 });
+app.post('/reset', function(req, res) {
+  models.Registration.remove({}, function(err, remove) {
+    if (err) {
+      return err;
+    }
+    res.render('index')
 
+  });
+});
 
 var port = 3001;
 app.listen(process.env.PORT || port, function() {});

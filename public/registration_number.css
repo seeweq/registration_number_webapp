@@ -5,15 +5,15 @@ body
 li
 {
     font-size: 50px;
-    
+
 
     width: 400px;
     margin-top: 10px;
-    margin-left: 440px;
+    margin-left: 35px;
 
     list-style: none;
 
-    text-align: center;
+
     text-transform: uppercase;
     border: solid;
     border-radius: 20px;
@@ -32,4 +32,7 @@ h1
 }
 h2{
     text-align: center;
+}
+ul li{
+  display: inline
 }
