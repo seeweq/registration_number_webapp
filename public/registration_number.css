@@ -9,7 +9,7 @@ li
 
     width: 400px;
     margin-top: 10px;
-    margin-left: 35px;
+    margin-left: 40px;
 
     list-style: none;
 
@@ -25,14 +25,19 @@ h1
 }
 .inputs
 {
-    margin-left: 450px;
+    margin-left: 35%;
+
 }
 .selections{
-    margin-left: 450px;
+    margin-left: 35%;
 }
 h2{
     text-align: center;
 }
 ul li{
-  display: inline
+  display: inline;
+  position: relative;
+}
+.resetbtn{
+    margin-left: 35%;
 }

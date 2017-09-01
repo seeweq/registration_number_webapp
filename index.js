@@ -86,28 +86,38 @@ app.post('/', function(req, res) {
 
 app.post('/filter', function(req, res) {
   var areas = req.body.plateNumber;
-  //  console.log(areas);
-  models.Registration.find({
-    regNum: {
-      '$regex': '.*' + areas
+
+  if(!areas){
+    res.render('index',{
+      message : "please select on the choice buttons"
+    });
+  }else{
+    if (areas === 'all') {
+      areas = "";
     }
-  }, function(err, results) {
-    if (err) {
-      console.log(err);
-    } else {
-      //    console.log(results);
-      res.render('index', {
-        regPlate: results
-      })
-    }
-  })
+    models.Registration.find({
+      regNum: {
+        '$regex': '.*' + areas
+      }
+    }, function(err, results) {
+      if (err) {
+        console.log(err);
+      } else {
+        //    console.log(results);
+        res.render('index', {
+          regPlate: results
+        })
+      }
+    })
+  }
+
 });
 app.post('/reset', function(req, res) {
   models.Registration.remove({}, function(err, remove) {
     if (err) {
       return err;
     }
-    res.render('index')
+    res.redirect('/')
 
   });
 });

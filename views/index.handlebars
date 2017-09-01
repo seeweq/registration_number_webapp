@@ -23,7 +23,7 @@
       <input type="radio" name="plateNumber" value="ca">Cape Town
       <input type="radio" name="plateNumber" value="cl">Stellenbosch
       <input type="radio" name="plateNumber" value="cy">Bellville
-      <input type="radio" name="plateNumber" value="">All
+      <input type="radio" name="plateNumber" value="all">All
     </div>
     <input type="submit" name="fliterbtn" value="show">
   </form>
@@ -33,7 +33,7 @@
 
   <ul>
 
- {{numberPlates.length}}
+ <!-- {{numberPlates.length}} -->
 
   {{#each numberPlates}}
       <li>{{this.regNum}}</li>
